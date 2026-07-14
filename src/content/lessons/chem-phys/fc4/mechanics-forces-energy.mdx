@@ -1,0 +1,33 @@
+## Newton's Laws Govern Every Force Question
+
+Nearly every mechanics passage on the exam reduces to a careful application of Newton's three laws, so it pays to state them precisely rather than from memory of a slogan.
+
+**Newton's first law** (inertia) says an object's velocity stays constant — including staying at rest — unless a **net** external force acts on it. This is the most misapplied idea on the exam: an object moving at constant velocity is in equilibrium, meaning the *net* force on it is zero, not that *no* forces act on it at all. A book sliding at constant speed across a table still has gravity, a normal force, an applied force, and friction acting on it; they simply sum to zero.
+
+**Newton's second law**, **F = ma**, is the quantitative core of mechanics. Net force is what changes an object's velocity — it produces acceleration, not motion itself. A large net force on a small mass produces a large acceleration; the same net force on a large mass produces a small one. Whenever a passage gives you multiple forces, your first move should almost always be to sum them as vectors (accounting for direction) to find the net force before applying F = ma.
+
+**Newton's third law** states that forces come in equal-and-opposite pairs acting on *different* objects: if object A exerts a force on object B, object B exerts an equal-magnitude, oppositely-directed force back on A. These paired forces never cancel each other out in an analysis of a single object's motion, because they act on two separate bodies.
+
+## Torque and the Body as a System of Levers
+
+**Torque** (τ) is the rotational analog of force: τ = F × r, where r is the **lever arm** — the *perpendicular* distance from the axis of rotation to the line along which the force acts. Only the component of force perpendicular to the lever arm contributes to torque; a force applied directly along the lever arm (toward or away from the pivot) produces zero torque.
+
+The body's joints function as mechanical levers, classified by the relative positions of the fulcrum (F), the effort (E, where muscle force is applied), and the load (L, the resistance being moved):
+
+| Lever class | Arrangement | Mechanical trade-off | Example in the body |
+| --- | --- | --- | --- |
+| Class 1 | Fulcrum between effort and load | Depends on arm lengths | Head balancing on the atlanto-occipital joint |
+| Class 2 | Load between fulcrum and effort | Favors force (effort arm > load arm) | Standing on tiptoes (ball of foot as fulcrum) |
+| Class 3 | Effort between fulcrum and load | Favors speed/range of motion (load arm > effort arm) | Elbow flexion via the biceps |
+
+Class 3 levers dominate human limb anatomy, which is why the body is generally built for speed and range of motion at the expense of raw mechanical force — muscles must generate forces many times larger than the load they ultimately move.
+
+A system is in **rotational equilibrium** when the sum of clockwise torques equals the sum of counterclockwise torques, even if individual torques are large. This is the rotational counterpart to Newton's first law and is tested constantly in seesaw- and joint-balance-style problems: setting τ_clockwise = τ_counterclockwise and solving for an unknown force or distance is usually the fastest path to the answer.
+
+## Work, the Work-Energy Theorem, and Energy Conservation
+
+**Work** is done on an object only when a force causes displacement along the direction of that force: W = F·d·cos(θ), where θ is the angle between the force and displacement vectors. If θ = 90°, cos(θ) = 0 and no work is done no matter how large the force is — this is why carrying a bag horizontally at constant height does zero work against gravity, even though holding it up clearly requires a real, sustained force.
+
+The **work-energy theorem** ties work directly to kinetic energy: the net work done on an object equals its change in kinetic energy, W_net = ΔKE = ½mv²(final) − ½mv²(initial). This lets you solve for a final speed or a stopping distance without ever computing acceleration or time explicitly, provided you know the net force and displacement.
+
+More broadly, **mechanical energy** — the sum of kinetic energy (KE = ½mv²) and potential energy (commonly gravitational, PE = mgh) — is **conserved** in the absence of nonconservative forces like friction or air resistance. As an object falls, PE converts to KE one-for-one; as it rises, the reverse happens. When friction or drag is present, mechanical energy is not conserved in isolation — some of it is converted to thermal energy (heat) and, often, sound, and total energy (mechanical plus thermal) is what remains conserved. Exam questions frequently ask you to recognize which case applies: "smooth," "frictionless," and "ideal" all signal conservation of mechanical energy, while "rough surface" or given energy lost to heat signal that you must account for it separately.

@@ -1,0 +1,30 @@
+## Bronsted-Lowry Acids and Bases
+
+The **Bronsted-Lowry** definition — the one used throughout MCAT acid-base chemistry — defines an **acid** as a proton (H⁺) donor and a **base** as a proton acceptor. Every Bronsted-Lowry acid-base reaction produces a **conjugate base** (what's left after the acid donates its proton) and a **conjugate acid** (what results after the base accepts a proton). A conjugate acid-base pair differs by exactly one H⁺, and the strength relationship between them is inverse: the stronger an acid, the weaker its conjugate base, and vice versa.
+
+**Strong** acids and bases (HCl, HBr, HI, HNO₃, H₂SO₄, HClO₄ among acids; Group I/II hydroxides among bases) are defined by **complete dissociation** in water — essentially all of the original molecules ionize, and the reaction is treated as going to completion rather than reaching a meaningful equilibrium. **Weak** acids and bases only **partially dissociate**, establishing a true equilibrium between the intact and dissociated forms, governed by an acid dissociation constant Ka (or base constant Kb). A small Ka means the equilibrium lies far toward the undissociated acid — the acid holds onto its proton — while a large Ka means dissociation is favored. This distinction matters constantly: strong acid/base problems are stoichiometry problems (assume 100% dissociation), while weak acid/base problems require equilibrium reasoning (an ICE table, or Henderson-Hasselbalch once a conjugate pair is present).
+
+## The Henderson-Hasselbalch Equation
+
+For a **buffer** — a solution containing meaningful amounts of both a weak acid and its conjugate base (or a weak base and its conjugate acid) — the relationship between pH and the ratio of the two species is given by the **Henderson-Hasselbalch equation**:
+
+**pH = pKa + log([A⁻]/[HA])**
+
+where [A⁻] is the concentration of the conjugate base and [HA] is the concentration of the weak acid. This equation is a direct rearrangement of the Ka expression and should be treated as a tool you can apply quickly under time pressure, not just recognize. Two special cases are worth internalizing: when [A⁻] = [HA], the log term is log(1) = 0, so **pH = pKa** exactly — this is the buffer's midpoint, and it is also the point of maximum buffer capacity. As the ratio moves away from 1:1 in either direction, pH shifts away from pKa in the direction of whichever species dominates.
+
+## Buffer Capacity: Why Buffers Have Limits
+
+A buffer works by neutralizing small additions of acid or base: added H⁺ reacts with the conjugate base component, and added OH⁻ reacts with the weak acid component, so the ratio [A⁻]/[HA] shifts only modestly instead of the pH swinging freely. This resistance to pH change is the buffer's **capacity**, and it is not unlimited — it depends on how much of each species is actually present.
+
+A buffer is most effective, and resists pH change most strongly, when pH is close to pKa (conventionally within about one pH unit, corresponding roughly to a 10:1 to 1:10 ratio of [A⁻] to [HA]). Outside that range, one component becomes scarce relative to the other, and it takes only a small further addition of acid or base to exhaust it entirely — at which point the solution behaves like an unbuffered solution and pH changes rapidly. This is why choosing a buffer for a target pH means choosing a weak acid whose pKa is close to that target pH, and why a buffer that has absorbed most of its capacity (is far from its 1:1 ratio) is described as "exhausted" or having little capacity left even though some conjugate pair is technically still present.
+
+| Feature | Strong acid/base | Weak acid/base (buffer component) |
+| --- | --- | --- |
+| Dissociation in water | Complete | Partial (equilibrium) |
+| Governed by | Stoichiometry | Ka/Kb, Henderson-Hasselbalch |
+| pH prediction | From concentration directly | Requires pKa and species ratio |
+| Resists pH change? | No | Yes, near pH ≈ pKa |
+
+## Reading Titration Curves
+
+A titration curve of a weak acid with a strong base shows a gradual, buffered rise in pH through most of the titration, a distinct flat region (the **buffering region**, centered on pKa, where added base produces little pH change), and a steep **equivalence point** where moles of acid and base added are stoichiometrically equal. At the exact half-equivalence point of a weak-acid titration, exactly half of the original acid has been converted to its conjugate base, so [A⁻] = [HA] and **pH = pKa** — a fast, frequently tested way to read pKa directly off a titration curve without any calculation.

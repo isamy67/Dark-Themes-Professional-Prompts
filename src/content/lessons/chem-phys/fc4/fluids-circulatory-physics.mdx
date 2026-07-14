@@ -1,0 +1,35 @@
+## Fluids in Motion: The Continuity Equation
+
+For an incompressible fluid flowing through a tube with no leaks, the **volume flow rate** (Q = A·v, the cross-sectional area times the fluid's speed) must be the same at every point along the tube. This gives the **continuity equation**:
+
+**A₁v₁ = A₂v₂**
+
+Because the product of area and speed is fixed, fluid speed and cross-sectional area are inversely related: where the tube narrows, area decreases and speed must increase to keep the same volume moving through per unit time; where the tube widens, the fluid slows down. This single relationship explains why blood accelerates through a narrowed vessel and why the total cross-sectional area of the capillary bed (enormous, because of massive branching) corresponds to the slowest blood flow anywhere in the circulatory system, even though each individual capillary is tiny.
+
+## Bernoulli's Principle: Speed Trades Off Against Pressure
+
+**Bernoulli's equation** is a statement of energy conservation for a flowing, ideal (non-viscous, incompressible) fluid:
+
+**P + ½ρv² + ρgh = constant**
+
+along any streamline, where P is pressure, ρ is fluid density, v is flow speed, and h is height. The term ½ρv² behaves like a kinetic energy density and ρgh like a gravitational potential energy density, with pressure P completing the energy budget.
+
+For horizontal flow (h constant), this reduces to the form tested most often: **as fluid speed increases, pressure decreases**, and vice versa. This is **Bernoulli's principle**, and it is easy to state backwards under time pressure, so anchor it to the continuity equation: a narrowing (smaller A) forces speed up (by continuity), and that speed increase forces local pressure down (by Bernoulli). The two equations are almost always tested together — a change in vessel geometry propagates through continuity to change speed, and through Bernoulli to change pressure.
+
+## Poiseuille's Law: Resistance Is Dominated by Radius
+
+Real fluids are viscous, and pushing a viscous fluid through a tube requires a pressure difference to overcome resistance. **Poiseuille's law** describes the volume flow rate through a cylindrical tube under laminar flow:
+
+**Q = (πΔP r⁴) / (8ηL)**
+
+where ΔP is the pressure difference driving flow, r is the tube's radius, η is the fluid's viscosity, and L is the tube's length. The critical feature — and one of the most heavily tested relationships in this section — is that flow rate depends on the **fourth power of the radius**. Doubling a vessel's radius increases flow at a given pressure difference by a factor of 2⁴ = 16; halving the radius (as in vasoconstriction or stenosis) cuts flow to 1/16 for the same driving pressure. Equivalently, since resistance R ∝ 1/r⁴, even a small decrease in radius produces a disproportionately large increase in resistance. No other variable in the equation — viscosity, length, or pressure — comes close to having this much leverage over flow, which is exactly why the body regulates blood flow primarily by adjusting arteriole radius (vasodilation and vasoconstriction) rather than by other means.
+
+## Buoyancy: Archimedes' Principle
+
+An object submerged (fully or partially) in a fluid experiences an upward **buoyant force** equal to the weight of the fluid it displaces:
+
+**F_buoyant = ρ_fluid · V_displaced · g**
+
+This is **Archimedes' principle**, and whether an object floats or sinks comes down to a comparison of average densities, not weights in isolation. If an object's average density is less than the fluid's density, it displaces a weight of fluid greater than its own weight before it's fully submerged, so it floats with only part of its volume submerged. If its density exceeds the fluid's, it sinks, because even fully submerged it cannot displace enough fluid weight to balance its own weight.
+
+A useful shortcut: for a floating object, the buoyant force always exactly equals the object's own weight (that's the equilibrium condition), and the *fraction* of the object's volume submerged equals the ratio of the object's density to the fluid's density (V_submerged/V_object = ρ_object/ρ_fluid). This ratio is also what "specific gravity" problems are testing when they ask what fraction of an iceberg lies below the waterline, or how much of the body is submerged while floating in water versus in the higher-density water of the Dead Sea.
