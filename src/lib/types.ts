@@ -215,8 +215,70 @@ export const lessonTopicSchema = z.object({
 export type LessonTopic = z.infer<typeof lessonTopicSchema>;
 
 // ---------------------------------------------------------------------------
+// Content: flashcard decks (spaced-repetition)
+// ---------------------------------------------------------------------------
+
+export const flashcardSchema = z.object({
+  id: z.string(),
+  deckId: z.string(),
+  /** Markdown-capable prompt shown first. */
+  front: z.string(),
+  /** Markdown-capable answer revealed on flip. */
+  back: z.string(),
+  /** Optional nudge shown before the answer is revealed. */
+  hint: z.string().optional(),
+  /** FC id (e.g. "fc1") tying the card to the Learn section, matching the question tagging convention. */
+  foundationalConcept: z.string().optional(),
+});
+export type Flashcard = z.infer<typeof flashcardSchema>;
+
+export const flashcardDeckSchema = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    description: z.string(),
+    sectionKey: sectionKeySchema,
+    /** Optional FC id the whole deck aligns with. */
+    foundationalConcept: z.string().optional(),
+    cards: z.array(flashcardSchema).min(1),
+  })
+  .superRefine((deck, ctx) => {
+    const seen = new Set<string>();
+    for (const card of deck.cards) {
+      if (card.deckId !== deck.id) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `card "${card.id}" has deckId "${card.deckId}" but lives in deck "${deck.id}"`,
+          path: ["cards"],
+        });
+      }
+      if (seen.has(card.id)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `deck "${deck.id}" has duplicate card id "${card.id}"`,
+          path: ["cards"],
+        });
+      }
+      seen.add(card.id);
+    }
+  });
+export type FlashcardDeck = z.infer<typeof flashcardDeckSchema>;
+
+// ---------------------------------------------------------------------------
 // Runtime attempt state (persisted via Zustand, not content)
 // ---------------------------------------------------------------------------
+
+/**
+ * Per-card SuperMemo-2 scheduling state, persisted in IndexedDB. `dueAt` is an
+ * epoch-millisecond timestamp so comparisons and JSON persistence stay trivial.
+ */
+export const cardSrsStateSchema = z.object({
+  repetitions: z.number().int().nonnegative(),
+  easeFactor: z.number(),
+  intervalDays: z.number().nonnegative(),
+  dueAt: z.number(),
+});
+export type CardSrsState = z.infer<typeof cardSrsStateSchema>;
 
 export const highlightRangeSchema = z.object({
   start: z.number().int().nonnegative(),

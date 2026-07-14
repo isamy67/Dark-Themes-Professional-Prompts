@@ -3,14 +3,17 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { BookOpen, CheckCircle2, GraduationCap, PlayCircle, XCircle } from "lucide-react";
+import { BookOpen, CheckCircle2, GraduationCap, Layers, PlayCircle, XCircle } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { getCanonicalExamPath } from "@/lib/examRouting";
 import { exam1Meta } from "@/lib/examConfig";
+import { listDecks } from "@/lib/content";
+import { countDue } from "@/lib/srs";
 import { useExamSessionStore } from "@/store/examSessionStore";
 import { useResultsStore } from "@/store/resultsStore";
+import { useSrsStore } from "@/store/srsStore";
 
 const IN_PROGRESS_STATUSES = new Set([
   "tutorial",
@@ -30,6 +33,11 @@ export function HomePageClient() {
   const attempt = useExamSessionStore((s) => s.attempt);
   const hasHydrated = useExamSessionStore((s) => s.hasHydrated);
   const results = useResultsStore((s) => s.results);
+  const srsProgress = useSrsStore((s) => s.progress);
+  const srsHydrated = useSrsStore((s) => s.hasHydrated);
+  const decks = listDecks();
+  const [now] = useState(() => Date.now());
+  const srsReady = srsHydrated;
   const [timedBySection, setTimedBySection] = useState<Record<string, boolean>>(
     () =>
       Object.fromEntries(exam1Meta.sections.map((s) => [s.id, true])),
@@ -183,6 +191,47 @@ export function HomePageClient() {
               </Card>
             </Link>
           ))}
+        </div>
+      </div>
+
+      <div className="w-full">
+        <h2 className="mb-1 font-display text-lg font-semibold tracking-tight text-foreground">
+          Flashcards
+        </h2>
+        <p className="mb-4 text-sm text-muted-foreground">
+          Spaced-repetition decks scheduled with the SuperMemo-2 algorithm —
+          drill high-yield facts and let the schedule surface what you&apos;re
+          forgetting.
+        </p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {decks.map((deck) => {
+            const dueCount = countDue(
+              deck.cards,
+              srsProgress[deck.id] ?? {},
+              now,
+            );
+            return (
+              <Link key={deck.id} href={`/flashcards/${deck.id}`}>
+                <Card interactive className="flex items-center gap-3 p-6">
+                  <Layers size={18} strokeWidth={1.5} className="text-accent" />
+                  <div className="flex-1">
+                    <p className="font-mono text-xs tracking-wide text-muted-foreground">
+                      {deck.sectionKey.toUpperCase()}
+                    </p>
+                    <p className="mt-1 font-display text-sm font-semibold text-foreground">
+                      {deck.title}
+                    </p>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {deck.cards.length} cards
+                      {srsReady && dueCount > 0 && (
+                        <span className="text-accent"> · {dueCount} due</span>
+                      )}
+                    </p>
+                  </div>
+                </Card>
+              </Link>
+            );
+          })}
         </div>
       </div>
 

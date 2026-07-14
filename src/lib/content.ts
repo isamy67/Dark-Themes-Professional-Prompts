@@ -1,6 +1,15 @@
 import type { ComponentType } from "react";
-import { sectionContentSchema, type Passage, type Question, type SectionContent } from "@/lib/types";
+import {
+  flashcardDeckSchema,
+  sectionContentSchema,
+  type Flashcard,
+  type FlashcardDeck,
+  type Passage,
+  type Question,
+  type SectionContent,
+} from "@/lib/types";
 import { EXAMS, getExamMeta } from "@/lib/examConfig";
+import { RAW_FLASHCARD_DECKS } from "@/content/flashcards";
 import type { ExamMeta, ExamSectionConfig, FoundationalConcept, LessonTopic, SectionKey } from "@/lib/types";
 
 import chemPhysContent from "@/content/exams/exam-1/sections/chem-phys";
@@ -183,4 +192,34 @@ export function getLessonTopicBySlug(
 
 export function getLessonMdxComponent(topicId: string): ComponentType | undefined {
   return ALL_MDX_REGISTRY[topicId];
+}
+
+// ---------------------------------------------------------------------------
+// Flashcards: decks validated once, then served from a by-id cache
+// ---------------------------------------------------------------------------
+
+let validatedDecks: FlashcardDeck[] | null = null;
+const deckById = new Map<string, FlashcardDeck>();
+
+function ensureDecks(): FlashcardDeck[] {
+  if (validatedDecks) return validatedDecks;
+  validatedDecks = Object.values(RAW_FLASHCARD_DECKS).map((raw) =>
+    flashcardDeckSchema.parse(raw),
+  );
+  for (const deck of validatedDecks) deckById.set(deck.id, deck);
+  return validatedDecks;
+}
+
+/** All flashcard decks (validated), in registry order. */
+export function listDecks(): FlashcardDeck[] {
+  return ensureDecks();
+}
+
+export function getDeck(deckId: string): FlashcardDeck | undefined {
+  ensureDecks();
+  return deckById.get(deckId);
+}
+
+export function getCard(deckId: string, cardId: string): Flashcard | undefined {
+  return getDeck(deckId)?.cards.find((c) => c.id === cardId);
 }
