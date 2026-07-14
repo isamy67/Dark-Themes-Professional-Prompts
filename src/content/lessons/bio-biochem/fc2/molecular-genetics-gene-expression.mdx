@@ -1,0 +1,34 @@
+## Prokaryotic Gene Regulation: The Lac Operon
+
+Bacteria regulate gene expression largely at the level of transcription, and the **lac operon** in *E. coli* is the model system the exam returns to again and again. The operon encodes three genes needed to metabolize lactose, all transcribed together as a single mRNA from one promoter.
+
+The default state of the lac operon is **repressed**. A repressor protein, encoded by a separate regulatory gene, binds a DNA sequence called the operator, which overlaps the promoter, and physically blocks RNA polymerase from transcribing the operon. This makes sense metabolically: without lactose present, there is no reason to waste energy producing enzymes to digest it.
+
+When lactose is available, a small amount is converted intracellularly to **allolactose**, which binds the repressor and changes its shape so that it can no longer bind the operator. The repressor releases the DNA, and transcription becomes possible. Note precisely what allolactose does — it **inactivates a repressor**, rather than directly activating transcription itself. This is a commonly tested distinction: lactose relieves repression; it does not, by itself, turn the operon "on."
+
+## Catabolite Repression: Layering a Second Signal
+
+Even with the repressor inactivated, the lac operon is transcribed only weakly unless a second condition is met — low glucose. This second layer of control is called **catabolite repression**, and it works through a positive regulator rather than the repressor.
+
+When glucose is scarce, intracellular **cAMP** levels rise. cAMP binds **catabolite activator protein (CAP)**, and the cAMP-CAP complex binds a site near the lac promoter, bending the DNA and helping RNA polymerase bind efficiently, strongly boosting transcription. When glucose is abundant, cAMP levels fall, CAP cannot activate the promoter, and lac operon transcription stays low even if lactose is present and the repressor is off the operator.
+
+Putting the two systems together: the lac operon is transcribed at a high rate only when lactose is present (repressor off) **and** glucose is scarce (CAP active). This dual-input logic — one negative regulator responding to lactose, one positive regulator responding to glucose availability — is exactly the kind of two-step reasoning MCAT passages test with operon diagrams and mutant strains.
+
+## Eukaryotic Gene Expression: More Checkpoints, More Control
+
+Eukaryotic cells regulate gene expression at more stages than prokaryotes do, reflecting the added complexity of a nucleus, chromatin packaging, and RNA processing. Useful checkpoints to keep straight:
+
+- **Transcriptional control**: transcription factors bind promoters and more distant regulatory elements called enhancers or silencers, recruiting or blocking RNA polymerase II. Because enhancers can act at a distance and independent of orientation, DNA looping is often required to bring them into contact with the promoter.
+- **Post-transcriptional control (splicing)**: the primary transcript (pre-mRNA) contains introns that are removed and exons that are joined together by the spliceosome. **Alternative splicing** allows a single gene to produce multiple distinct protein products depending on which exons are retained, a major reason the human proteome is far larger than the human gene count.
+- **Translational control**: the rate at which an mRNA is translated can be regulated by factors binding its untranslated regions, by microRNAs that bind complementary mRNA sequences and typically suppress translation or promote degradation, and by mRNA stability itself.
+- **Post-translational control**: after synthesis, proteins can be activated, inactivated, marked for degradation, or relocalized through modifications such as phosphorylation, ubiquitination, or proteolytic cleavage.
+
+## Epigenetics: Regulation Without Changing the Sequence
+
+A distinct and increasingly tested layer of control is **epigenetic regulation** — heritable changes in gene expression that do not alter the underlying DNA sequence. Two mechanisms dominate:
+
+**DNA methylation**, typically the addition of methyl groups to cytosine bases in CpG-rich regions near promoters, is generally associated with transcriptional **silencing**. Densely methylated promoter regions are less accessible to transcription machinery.
+
+**Histone modification** changes how tightly DNA is wound around histone proteins. **Histone acetylation** neutralizes the positive charge on histone tails, loosening their grip on negatively charged DNA, producing a more open chromatin state (euchromatin) that is more accessible to transcription — generally increasing expression. **Histone deacetylation**, or heavy methylation of certain histone residues, tends to produce tightly packed chromatin (heterochromatin) that transcription machinery cannot easily access, silencing expression.
+
+The essential point tested across all of this material: epigenetic marks change whether a gene *can be read*, not what the gene *says*. Two cells with identical DNA sequence can express entirely different genes depending on their pattern of methylation and histone modification — the basis of cellular differentiation despite a shared genome.

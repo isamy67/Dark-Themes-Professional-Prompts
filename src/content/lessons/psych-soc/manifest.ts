@@ -1,6 +1,13 @@
 import type { ComponentType } from "react";
 import type { FoundationalConcept, LessonTopic } from "@/lib/types";
 
+import SensationPerceptionNervousSystem from "./fc6/sensation-perception-nervous-system.mdx";
+import LearningMemory from "./fc6/learning-memory.mdx";
+import PersonalityMotivationEmotion from "./fc7/personality-motivation-emotion.mdx";
+import PsychologicalDisorders from "./fc7/psychological-disorders.mdx";
+import SocialStructuresStratification from "./fc8/social-structures-stratification.mdx";
+import DemographicsPopulationHealth from "./fc8/demographics-population-health.mdx";
+
 export const foundationalConcepts: FoundationalConcept[] = [
   {
     id: "fc6",
@@ -184,4 +191,11 @@ export const lessonTopics: LessonTopic[] = [
   },
 ];
 
-export const mdxRegistry: Record<string, ComponentType> = {};
+export const mdxRegistry: Record<string, ComponentType> = {
+  "fc6-sensation-perception-nervous-system": SensationPerceptionNervousSystem,
+  "fc6-learning-memory": LearningMemory,
+  "fc7-personality-motivation-emotion": PersonalityMotivationEmotion,
+  "fc7-psychological-disorders": PsychologicalDisorders,
+  "fc8-social-structures-stratification": SocialStructuresStratification,
+  "fc8-demographics-population-health": DemographicsPopulationHealth,
+};

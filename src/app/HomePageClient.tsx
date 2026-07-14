@@ -3,11 +3,23 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { BookOpen, GraduationCap } from "lucide-react";
+import { BookOpen, CheckCircle2, GraduationCap, PlayCircle, XCircle } from "lucide-react";
+import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { getCanonicalExamPath } from "@/lib/examRouting";
 import { exam1Meta } from "@/lib/examConfig";
 import { useExamSessionStore } from "@/store/examSessionStore";
+import { useResultsStore } from "@/store/resultsStore";
+
+const IN_PROGRESS_STATUSES = new Set([
+  "tutorial",
+  "section-intro",
+  "in-section",
+  "on-break",
+  "reviewing-section",
+  "void-decision",
+]);
 
 export function HomePageClient() {
   const router = useRouter();
@@ -15,6 +27,9 @@ export function HomePageClient() {
   const startSectionPractice = useExamSessionStore(
     (s) => s.startSectionPractice,
   );
+  const attempt = useExamSessionStore((s) => s.attempt);
+  const hasHydrated = useExamSessionStore((s) => s.hasHydrated);
+  const results = useResultsStore((s) => s.results);
   const [timedBySection, setTimedBySection] = useState<Record<string, boolean>>(
     () =>
       Object.fromEntries(exam1Meta.sections.map((s) => [s.id, true])),
@@ -24,6 +39,11 @@ export function HomePageClient() {
     startSectionPractice("exam-1", sectionId, timedBySection[sectionId]);
     router.push("/exam/exam-1");
   }
+
+  const resumableAttempt =
+    hasHydrated && attempt && IN_PROGRESS_STATUSES.has(attempt.status)
+      ? attempt
+      : null;
 
   return (
     <main className="mx-auto flex w-full max-w-4xl flex-1 flex-col items-center gap-12 px-6 py-16">
@@ -35,6 +55,26 @@ export function HomePageClient() {
           {exam1Meta.title}
         </h1>
       </div>
+
+      {resumableAttempt && (
+        <Card highlighted className="flex w-full max-w-md items-center gap-4 p-6">
+          <PlayCircle size={22} strokeWidth={1.5} className="shrink-0 text-accent" />
+          <div className="flex-1 text-left">
+            <p className="font-display text-sm font-semibold text-foreground">
+              Resume your {resumableAttempt.mode === "full-sim" ? "exam" : "practice session"}
+            </p>
+            <p className="text-xs text-muted-foreground">
+              You have an attempt in progress.
+            </p>
+          </div>
+          <Button
+            size="sm"
+            onClick={() => router.push(getCanonicalExamPath(resumableAttempt))}
+          >
+            Resume
+          </Button>
+        </Card>
+      )}
 
       <Card className="w-full max-w-md p-8 text-center">
         <p className="mb-6 text-sm text-muted-foreground">
@@ -160,6 +200,47 @@ export function HomePageClient() {
           </div>
         </Card>
       </Link>
+
+      {hasHydrated && results.length > 0 && (
+        <div className="w-full">
+          <h2 className="mb-4 font-display text-lg font-semibold tracking-tight text-foreground">
+            Your Results
+          </h2>
+          <div className="flex flex-col gap-2">
+            {results.map((result) => (
+              <Card
+                key={result.attemptId}
+                className="flex items-center justify-between gap-4 p-4"
+              >
+                <div className="flex items-center gap-3">
+                  {result.voided ? (
+                    <XCircle size={16} strokeWidth={1.5} className="text-muted-foreground" />
+                  ) : (
+                    <CheckCircle2 size={16} strokeWidth={1.5} className="text-success" />
+                  )}
+                  <div>
+                    <p className="text-sm font-medium text-foreground">
+                      {result.mode === "full-sim" ? "Full Exam" : "Section Practice"}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {new Date(result.completedAt).toLocaleDateString(undefined, {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </p>
+                  </div>
+                </div>
+                {result.voided ? (
+                  <Badge tone="neutral">Voided</Badge>
+                ) : (
+                  <Badge tone="accent">{result.totalScaledScore}</Badge>
+                )}
+              </Card>
+            ))}
+          </div>
+        </div>
+      )}
     </main>
   );
 }

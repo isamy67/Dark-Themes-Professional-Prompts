@@ -1,0 +1,43 @@
+## Gibbs Free Energy Determines Spontaneity
+
+Whether a reaction proceeds on its own — without continuous outside input — is governed by the change in **Gibbs free energy**:
+
+**ΔG = ΔH − TΔS**
+
+where ΔH is the change in enthalpy (heat content, roughly the bond-energy balance of the reaction), T is absolute temperature in kelvin, and ΔS is the change in entropy (disorder, or the number of accessible microstates). A reaction with **ΔG < 0** is **spontaneous** (also called **exergonic**) — it will proceed in the forward direction as written, releasing usable free energy. A reaction with **ΔG > 0** is **nonspontaneous** (**endergonic**) and requires a net input of free energy to proceed forward. When **ΔG = 0**, the system is at equilibrium, with no net driving force in either direction.
+
+Because ΔG depends on both an enthalpy term and a temperature-weighted entropy term, the same reaction can flip from spontaneous to nonspontaneous depending on temperature. A reaction with ΔH > 0 (endothermic) and ΔS > 0 (increasing disorder) is nonspontaneous at low temperature, where the unfavorable enthalpy term dominates, but becomes spontaneous at high temperature, where TΔS grows large enough to outweigh ΔH. This temperature-dependence is a favorite way passages test whether you actually understand the equation rather than having memorized "negative ΔG is good."
+
+## Spontaneity and Rate Are Independent Questions
+
+This is the single most important — and most commonly confused — idea in this lesson: **ΔG tells you nothing about how fast a reaction happens.** Spontaneity is a thermodynamic, thermodynamic-equilibrium concept; rate is a kinetic concept governed by the reaction's **activation energy** (Ea), the energy barrier that must be climbed to convert reactants into products regardless of how favorable the overall energy change is.
+
+A reaction can be highly spontaneous (very negative ΔG) and still proceed at an imperceptible rate at room temperature if Ea is large — the reactants are thermodynamically "downhill" but kinetically trapped behind a high barrier. Conversely, a fast reaction is not necessarily a spontaneous one; rate constants and equilibrium constants are governed by different quantities entirely. Whenever a passage gives you both a ΔG value and a rate or activation-energy value, expect the question to test whether you keep these two ideas separate.
+
+## Catalysts Change the Path, Not the Destination
+
+A **catalyst** (including every biological enzyme) speeds up a reaction by providing an alternative reaction pathway with a **lower activation energy**, increasing the fraction of molecular collisions with enough energy to react. Critically, a catalyst:
+
+- Does **not** change ΔG, ΔH, or ΔS of the reaction.
+- Does **not** change the position of equilibrium (Keq is unaffected).
+- Speeds up the forward **and** reverse reactions equally, so equilibrium is reached faster, not shifted.
+- Is regenerated unchanged at the end of the reaction.
+
+In other words, a catalyst only ever affects kinetics, never thermodynamics — it changes how quickly a system gets to an outcome that was already thermodynamically determined, not which outcome it gets to.
+
+## The Arrhenius Equation and What Controls Reaction Rate
+
+The temperature-dependence of a rate constant is captured by the **Arrhenius equation**:
+
+**k = A·e^(−Ea/RT)**
+
+where k is the rate constant, A is a frequency factor (related to collision frequency and orientation), Ea is activation energy, R is the gas constant, and T is absolute temperature. The key qualitative takeaways, which show up far more often than the equation itself:
+
+| Factor increased | Effect on rate | Why |
+| --- | --- | --- |
+| Concentration of reactants | Increases | More frequent effective collisions |
+| Temperature | Increases | More molecules exceed Ea; collisions more frequent and energetic |
+| Activation energy (Ea) | Decreases | Fewer collisions have enough energy to react |
+| Catalyst present | Increases | Lowers Ea via an alternate pathway |
+
+Because rate depends exponentially on −Ea/T, even modest changes in temperature can produce large changes in reaction rate — a relationship worth remembering qualitatively (rate roughly doubles for every 10°C rise, a common rule of thumb in biological systems) even without plugging numbers into the full equation.

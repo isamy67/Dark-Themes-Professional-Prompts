@@ -21,11 +21,18 @@ export function ResultsPageClient({ examId }: { examId: string }) {
     : undefined;
 
   useEffect(() => {
-    if (!attempt || existingResult) return;
+    if (!attempt) return;
     if (attempt.status !== "completed" && attempt.status !== "voided") return;
+    // Reads live store state rather than the `existingResult` closed over at
+    // render time: React Strict Mode double-invokes effects in development,
+    // and a stale closure would let both invocations see "no result yet" and
+    // each add one, producing two results with the same attemptId.
+    const alreadyRecorded = useResultsStore
+      .getState()
+      .results.some((r) => r.attemptId === attempt.id);
+    if (alreadyRecorded) return;
     addResult(buildExamResult(attempt, attempt.status === "voided"));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [attempt?.id, attempt?.status, existingResult]);
+  }, [attempt, addResult]);
 
   if (!hasHydrated || !attempt) return <LoadingScreen />;
   if (!existingResult) return <LoadingScreen />;

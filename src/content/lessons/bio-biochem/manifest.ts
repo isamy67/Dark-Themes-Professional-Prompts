@@ -1,6 +1,11 @@
 import type { ComponentType } from "react";
 import type { FoundationalConcept, LessonTopic } from "@/lib/types";
 import EnzymeFunctionKinetics from "./fc1/enzyme-function-kinetics.mdx";
+import AminoAcidsProteinStructure from "./fc1/amino-acids-protein-structure.mdx";
+import MolecularGeneticsGeneExpression from "./fc2/molecular-genetics-gene-expression.mdx";
+import CellStructureCycle from "./fc2/cell-structure-cycle.mdx";
+import NervousEndocrineSignaling from "./fc3/nervous-endocrine-signaling.mdx";
+import CirculatoryRespiratoryRenal from "./fc3/circulatory-respiratory-renal.mdx";
 
 export const foundationalConcepts: FoundationalConcept[] = [
   {
@@ -183,4 +188,9 @@ export const lessonTopics: LessonTopic[] = [
 
 export const mdxRegistry: Record<string, ComponentType> = {
   "fc1-enzyme-function-kinetics": EnzymeFunctionKinetics,
+  "fc1-amino-acids-protein-structure": AminoAcidsProteinStructure,
+  "fc2-molecular-genetics-gene-expression": MolecularGeneticsGeneExpression,
+  "fc2-cell-structure-cycle": CellStructureCycle,
+  "fc3-nervous-endocrine-signaling": NervousEndocrineSignaling,
+  "fc3-circulatory-respiratory-renal": CirculatoryRespiratoryRenal,
 };

@@ -1,5 +1,8 @@
 import type { ComponentType } from "react";
 import type { FoundationalConcept, LessonTopic } from "@/lib/types";
+import ReadingStrategy from "./foundations-of-comprehension/reading-strategy.mdx";
+import ReasoningStrategy from "./reasoning-within-the-text/reasoning-strategy.mdx";
+import StrengthenWeakenStrategy from "./reasoning-beyond-the-text/strengthen-weaken-strategy.mdx";
 
 /**
  * CARS has no content knowledge to test — AAMC organizes it into three
@@ -113,4 +116,8 @@ export const lessonTopics: LessonTopic[] = [
   },
 ];
 
-export const mdxRegistry: Record<string, ComponentType> = {};
+export const mdxRegistry: Record<string, ComponentType> = {
+  "foundations-of-comprehension-reading-strategy": ReadingStrategy,
+  "reasoning-within-the-text-strategy": ReasoningStrategy,
+  "reasoning-beyond-the-text-strategy": StrengthenWeakenStrategy,
+};

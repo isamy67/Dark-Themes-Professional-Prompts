@@ -1,0 +1,38 @@
+## Oxidation and Reduction: Tracking Electrons
+
+**Electrochemistry** is fundamentally about the transfer of electrons between chemical species. **Oxidation** is the *loss* of electrons (and typically an increase in oxidation state); **reduction** is the *gain* of electrons (a decrease in oxidation state). The classic mnemonic — "**LEO** the lion says **GER**": **L**ose **E**lectrons = **O**xidation, **G**ain **E**lectrons = **R**eduction — is worth having automatic, because every electrochemistry question depends on correctly assigning which species is being oxidized and which is being reduced.
+
+Oxidation and reduction always occur together in a **redox reaction**: one species cannot lose electrons unless another species accepts them. The species that is oxidized (loses electrons) is called the **reducing agent**, because it enables another species to be reduced; the species that is reduced (gains electrons) is the **oxidizing agent**, because it enables another species to be oxidized. This naming is a common trap — the reducing agent is the one that *is* oxidized, not the one that is reduced.
+
+## Galvanic Cells Convert Chemical Energy to Electrical Energy
+
+A **galvanic (voltaic) cell** harnesses a spontaneous redox reaction to generate electrical current. It's built from two half-cells, each containing an electrode in contact with a solution of its ions, connected by a wire (for electron flow) and a salt bridge (to maintain charge neutrality by allowing ion flow without letting the solutions mix directly). Two electrode names to keep straight:
+
+- The **anode** is where **oxidation** occurs (electrons are released into the external circuit).
+- The **cathode** is where **reduction** occurs (electrons from the circuit are consumed).
+
+A useful anchor, since these terms get reused (with a sign flip in meaning) in electrolytic cells: in a galvanic cell, electrons flow spontaneously from anode to cathode through the external wire, and conventional current flows the opposite direction, from cathode to anode externally.
+
+## Standard Reduction Potentials and Cell Voltage
+
+Every half-reaction has a characteristic **standard reduction potential** (E°), measured in volts relative to the standard hydrogen electrode (defined as 0 V), which quantifies that species' tendency to be reduced (to gain electrons) under standard conditions. A more positive E° means a stronger tendency to be reduced (a better oxidizing agent); a more negative E° means a weaker tendency to be reduced (and thus a stronger tendency, in reverse, to be oxidized — a better reducing agent).
+
+For a full cell built from two half-reactions, the standard cell potential is:
+
+**E°cell = E°cathode − E°anode**
+
+using the standard *reduction* potentials for both half-reactions as tabulated (do not flip the sign of the anode's value before subtracting — the equation already handles that). A **positive E°cell** indicates a **spontaneous** reaction as written (this is how a galvanic cell is defined) and corresponds to **ΔG < 0**, via the direct relationship ΔG° = −nFE°cell, where n is moles of electrons transferred and F is Faraday's constant. A negative E°cell indicates the reaction as written is nonspontaneous — it would require external energy input to drive, which is precisely what an **electrolytic cell** does.
+
+| Quantity | Sign for spontaneous (galvanic) process |
+| --- | --- |
+| E°cell | Positive |
+| ΔG° | Negative |
+| Keq | Greater than 1 |
+
+## The Nernst Equation: Beyond Standard Conditions
+
+Standard reduction potentials assume standard conditions (1 M concentrations, 1 atm, 298 K). Real cells rarely sit exactly at standard conditions, and cell potential changes as a reaction proceeds and concentrations shift. The **Nernst equation** corrects for this:
+
+**Ecell = E°cell − (RT/nF)·ln(Q)**
+
+where Q is the reaction quotient, n is moles of electrons transferred, and the other terms are as before (at 298 K this is often simplified to Ecell = E°cell − (0.0592/n)·log(Q)). The qualitative behavior is what's tested most: as a galvanic cell discharges, products accumulate and reactants are consumed, so Q increases toward Keq, and Ecell steadily **decreases**. At equilibrium, Q = Keq, the driving force for further net reaction vanishes, and **Ecell = 0** — a dead battery is, in these terms, simply a redox reaction that has reached equilibrium.

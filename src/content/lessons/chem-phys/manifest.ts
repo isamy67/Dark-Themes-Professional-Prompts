@@ -1,5 +1,10 @@
 import type { ComponentType } from "react";
 import type { FoundationalConcept, LessonTopic } from "@/lib/types";
+import MechanicsForcesEnergy from "./fc4/mechanics-forces-energy.mdx";
+import FluidsCirculatoryPhysics from "./fc4/fluids-circulatory-physics.mdx";
+import ThermodynamicsReactionRates from "./fc5/thermodynamics-reaction-rates.mdx";
+import AcidBaseBuffers from "./fc5/acid-base-buffers.mdx";
+import Electrochemistry from "./fc5/electrochemistry.mdx";
 
 export const foundationalConcepts: FoundationalConcept[] = [
   {
@@ -149,4 +154,10 @@ export const lessonTopics: LessonTopic[] = [
   },
 ];
 
-export const mdxRegistry: Record<string, ComponentType> = {};
+export const mdxRegistry: Record<string, ComponentType> = {
+  "fc4-mechanics-forces-energy": MechanicsForcesEnergy,
+  "fc4-fluids-circulatory-physics": FluidsCirculatoryPhysics,
+  "fc5-thermodynamics-reaction-rates": ThermodynamicsReactionRates,
+  "fc5-acid-base-buffers": AcidBaseBuffers,
+  "fc5-electrochemistry": Electrochemistry,
+};
