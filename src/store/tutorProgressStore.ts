@@ -2,7 +2,7 @@
 
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { safeLocalStorage } from "@/lib/storage";
+import { idbStorage } from "@/lib/storage";
 
 interface TutorQuestionProgress {
   choiceId: string | null;
@@ -38,7 +38,7 @@ export const useTutorProgressStore = create<TutorProgressState>()(
     {
       name: "mcat-prep.tutor-progress.v1",
       version: 1,
-      storage: createJSONStorage(() => safeLocalStorage),
+      storage: createJSONStorage(() => idbStorage),
     },
   ),
 );

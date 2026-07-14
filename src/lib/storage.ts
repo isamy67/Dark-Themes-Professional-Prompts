@@ -23,6 +23,11 @@ export const safeLocalStorage: StateStorage = {
   },
 };
 
+// Persisted state now lives in IndexedDB (async). Re-exported here so stores
+// keep importing their storage adapter from this module; the localStorage
+// adapter above stays available for the one-time migration of legacy data.
+export { idbStorage } from "./idbStorage";
+
 /** Bump whenever a persisted store's shape changes incompatibly. */
 export const EXAM_SESSION_STORAGE_VERSION = 1;
 export const RESULTS_STORAGE_VERSION = 1;

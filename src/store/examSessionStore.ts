@@ -6,7 +6,7 @@ import { getExam } from "@/lib/content";
 import {
   EXAM_SESSION_STORAGE_KEY,
   EXAM_SESSION_STORAGE_VERSION,
-  safeLocalStorage,
+  idbStorage,
 } from "@/lib/storage";
 import type {
   ExamAttempt,
@@ -360,7 +360,7 @@ export const useExamSessionStore = create<ExamSessionState>()(
     {
       name: EXAM_SESSION_STORAGE_KEY,
       version: EXAM_SESSION_STORAGE_VERSION,
-      storage: createJSONStorage(() => safeLocalStorage),
+      storage: createJSONStorage(() => idbStorage),
       partialize: (state) => ({ attempt: state.attempt }),
       onRehydrateStorage: () => (state) => {
         state?.setHasHydrated(true);

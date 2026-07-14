@@ -5,7 +5,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 import {
   RESULTS_STORAGE_KEY,
   RESULTS_STORAGE_VERSION,
-  safeLocalStorage,
+  idbStorage,
 } from "@/lib/storage";
 import type { ExamResult } from "@/lib/types";
 
@@ -24,7 +24,7 @@ export const useResultsStore = create<ResultsState>()(
     {
       name: RESULTS_STORAGE_KEY,
       version: RESULTS_STORAGE_VERSION,
-      storage: createJSONStorage(() => safeLocalStorage),
+      storage: createJSONStorage(() => idbStorage),
     },
   ),
 );
