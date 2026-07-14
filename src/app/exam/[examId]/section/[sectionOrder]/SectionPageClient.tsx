@@ -2,8 +2,9 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, LayoutGrid } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { Dialog } from "@/components/ui/Dialog";
 import { LoadingScreen } from "@/components/ui/LoadingScreen";
 import { ExamShell } from "@/components/exam/ExamShell";
 import { NavigatorGrid } from "@/components/exam/NavigatorGrid";
@@ -50,6 +51,7 @@ export function SectionPageClient({
   // question — as soon as attempt data is available, then only moves via
   // explicit navigation (Previous/Next/NavigatorGrid).
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [navigatorOpen, setNavigatorOpen] = useState(false);
   const initializedRef = useRef(false);
 
   useEffect(() => {
@@ -107,7 +109,22 @@ export function SectionPageClient({
 
   const isLastQuestion = currentIndex === questions.length - 1;
 
+  const navigatorGrid = (
+    <NavigatorGrid
+      questions={questions}
+      currentQuestionId={currentQuestion.id}
+      answeredIds={answeredIds}
+      flaggedIds={flaggedIds}
+      onSelect={(id) => {
+        const idx = questions.findIndex((q) => q.id === id);
+        if (idx >= 0) setCurrentIndex(idx);
+        setNavigatorOpen(false);
+      }}
+    />
+  );
+
   return (
+    <>
     <ExamShell
       header={
         <>
@@ -119,14 +136,23 @@ export function SectionPageClient({
               {sectionConfig.title}
             </p>
           </div>
-          {sectionAttempt.startedAt && (
-            <Timer
-              startedAt={sectionAttempt.startedAt}
-              timeLimitSec={sectionAttempt.timeLimitSec}
-              timed={sectionAttempt.timed}
-              onExpire={() => submitSection(sectionOrder)}
-            />
-          )}
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setNavigatorOpen(true)}
+              className="flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-white/5 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:hidden"
+            >
+              <LayoutGrid size={14} strokeWidth={1.5} /> Questions
+            </button>
+            {sectionAttempt.startedAt && (
+              <Timer
+                startedAt={sectionAttempt.startedAt}
+                timeLimitSec={sectionAttempt.timeLimitSec}
+                timed={sectionAttempt.timed}
+                onExpire={() => submitSection(sectionOrder)}
+              />
+            )}
+          </div>
         </>
       }
       sidebar={
@@ -134,16 +160,7 @@ export function SectionPageClient({
           <p className="font-mono text-xs tracking-wide text-muted-foreground">
             QUESTION NAVIGATOR
           </p>
-          <NavigatorGrid
-            questions={questions}
-            currentQuestionId={currentQuestion.id}
-            answeredIds={answeredIds}
-            flaggedIds={flaggedIds}
-            onSelect={(id) => {
-              const idx = questions.findIndex((q) => q.id === id);
-              if (idx >= 0) setCurrentIndex(idx);
-            }}
-          />
+          {navigatorGrid}
         </div>
       }
       footer={
@@ -171,8 +188,8 @@ export function SectionPageClient({
         </>
       }
     >
-      <div className="grid h-full grid-cols-1 md:grid-cols-2">
-        <div className="hidden h-full border-r border-border md:block">
+      <div className="grid h-full grid-cols-1 overflow-y-auto lg:grid-cols-2 lg:overflow-hidden">
+        <div className="max-h-[45vh] overflow-y-auto border-b border-border lg:h-full lg:max-h-none lg:border-b-0 lg:border-r">
           {passage ? (
             <PassageViewer
               passage={passage}
@@ -207,5 +224,14 @@ export function SectionPageClient({
         />
       </div>
     </ExamShell>
+    <Dialog
+      open={navigatorOpen}
+      onClose={() => setNavigatorOpen(false)}
+      title="Question Navigator"
+      className="max-w-sm"
+    >
+      {navigatorGrid}
+    </Dialog>
+    </>
   );
 }

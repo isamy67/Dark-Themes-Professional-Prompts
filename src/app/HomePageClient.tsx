@@ -122,7 +122,7 @@ export function HomePageClient() {
                         setTimedBySection((prev) => ({ ...prev, [section.id]: true }))
                       }
                       aria-pressed={timed}
-                      className={`rounded-md px-3 py-1.5 font-medium transition-colors ${
+                      className={`rounded-md px-3 py-1.5 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                         timed
                           ? "bg-accent text-accent-foreground"
                           : "text-muted-foreground hover:text-foreground"
@@ -136,7 +136,7 @@ export function HomePageClient() {
                         setTimedBySection((prev) => ({ ...prev, [section.id]: false }))
                       }
                       aria-pressed={!timed}
-                      className={`rounded-md px-3 py-1.5 font-medium transition-colors ${
+                      className={`rounded-md px-3 py-1.5 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                         !timed
                           ? "bg-accent text-accent-foreground"
                           : "text-muted-foreground hover:text-foreground"

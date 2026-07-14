@@ -16,7 +16,7 @@ export function ExamShell({ header, sidebar, children, footer }: ExamShellProps)
       <div className="flex flex-1 overflow-hidden">
         <main className="min-w-0 flex-1 overflow-hidden">{children}</main>
         {sidebar && (
-          <aside className="w-72 shrink-0 overflow-y-auto border-l border-border p-4">
+          <aside className="hidden w-72 shrink-0 overflow-y-auto border-l border-border p-4 lg:block">
             {sidebar}
           </aside>
         )}

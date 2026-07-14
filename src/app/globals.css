@@ -73,6 +73,16 @@ body {
   font-family: var(--font-body);
 }
 
+/* Plain <a>/<Link> elements (card links, nav links) don't carry the
+   focus-visible ring utilities applied to buttons individually — this
+   keeps their keyboard-focus ring visually consistent with the rest of
+   the design system instead of falling back to the browser default. */
+a:focus-visible {
+  outline: none;
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

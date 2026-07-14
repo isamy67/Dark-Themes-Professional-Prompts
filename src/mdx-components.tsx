@@ -32,7 +32,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     strong: (props) => <strong className="font-semibold text-foreground" {...props} />,
     em: (props) => <em className="text-foreground" {...props} />,
     a: (props) => (
-      <a className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent" {...props} />
+      <a
+        className="rounded text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        {...props}
+      />
     ),
     blockquote: (props) => (
       <blockquote

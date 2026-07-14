@@ -113,14 +113,14 @@ export function HighlightableText({
         >
           <button
             type="button"
-            className="rounded-md px-3 py-1.5 text-xs font-medium text-foreground hover:bg-accent-muted hover:text-accent"
+            className="rounded-md px-3 py-1.5 text-xs font-medium text-foreground hover:bg-accent-muted hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             onClick={() => applyKind("highlight")}
           >
             Highlight
           </button>
           <button
             type="button"
-            className="rounded-md px-3 py-1.5 text-xs font-medium text-foreground hover:bg-white/5"
+            className="rounded-md px-3 py-1.5 text-xs font-medium text-foreground hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             onClick={() => applyKind("strikethrough")}
           >
             Strikethrough
@@ -128,7 +128,7 @@ export function HighlightableText({
           {overlappingIndex >= 0 && (
             <button
               type="button"
-              className="rounded-md px-3 py-1.5 text-xs font-medium text-danger hover:bg-danger-muted"
+              className="rounded-md px-3 py-1.5 text-xs font-medium text-danger hover:bg-danger-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger"
               onClick={() => {
                 onRemoveRangeAt(overlappingIndex);
                 clearPopover();

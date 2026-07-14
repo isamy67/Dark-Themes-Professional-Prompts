@@ -16,7 +16,7 @@ export function FlagButton({ flagged, onToggle, className }: FlagButtonProps) {
       onClick={onToggle}
       aria-pressed={flagged}
       className={clsx(
-        "flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors",
+        "flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
         flagged
           ? "bg-accent-muted text-accent"
           : "text-muted-foreground hover:bg-white/5 hover:text-foreground",

@@ -183,7 +183,7 @@ function TutorQuestionBody({
                 <button
                   type="button"
                   onClick={() => setWalkthroughRequested(true)}
-                  className="text-sm font-medium text-accent hover:underline"
+                  className="rounded-md text-sm font-medium text-accent hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   Walk me through it
                 </button>

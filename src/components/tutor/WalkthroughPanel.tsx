@@ -51,7 +51,7 @@ export function WalkthroughPanel({
         <button
           type="button"
           onClick={() => setStepsShown((n) => Math.min(walkthrough.steps.length, n + 1))}
-          className="self-start rounded-md px-2 py-1 text-xs font-medium text-accent hover:bg-accent-muted"
+          className="self-start rounded-md px-2 py-1 text-xs font-medium text-accent hover:bg-accent-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
           Show next step
         </button>

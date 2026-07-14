@@ -50,7 +50,7 @@ export function AnswerChoiceList({
               aria-checked={selected}
               disabled={disabled}
               onClick={() => onSelect(choice.id)}
-              className="flex flex-1 items-start gap-3 rounded-md p-2 text-left text-sm disabled:cursor-default"
+              className="flex flex-1 items-start gap-3 rounded-md p-2 text-left text-sm disabled:cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               <span
                 className={clsx(
@@ -82,7 +82,7 @@ export function AnswerChoiceList({
                 disabled={disabled}
                 onClick={() => onToggleStrike(choice.id)}
                 className={clsx(
-                  "shrink-0 rounded-md p-2 text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground",
+                  "shrink-0 rounded-md p-2 text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
                   struck && "text-accent",
                 )}
               >
