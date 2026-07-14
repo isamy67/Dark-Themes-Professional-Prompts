@@ -221,6 +221,7 @@ export type LessonTopic = z.infer<typeof lessonTopicSchema>;
 export const highlightRangeSchema = z.object({
   start: z.number().int().nonnegative(),
   end: z.number().int().nonnegative(),
+  kind: z.enum(["highlight", "strikethrough"]),
 });
 export type HighlightRange = z.infer<typeof highlightRangeSchema>;
 
@@ -243,6 +244,12 @@ export const sectionAttemptStateSchema = z.object({
   status: sectionAttemptStatusSchema,
   /** Wall-clock ISO timestamp anchor — the timer's source of truth, never derived remaining-time. */
   startedAt: z.string().optional(),
+  /**
+   * False for untimed standalone practice. Kept as an explicit flag (rather
+   * than an Infinity sentinel in timeLimitSec) because JSON.stringify turns
+   * Infinity into null, which would break localStorage persistence.
+   */
+  timed: z.boolean(),
   timeLimitSec: z.number().positive(),
   pausedAccumMs: z.number().nonnegative().optional(),
   answers: z.record(z.string(), answerStateSchema),
