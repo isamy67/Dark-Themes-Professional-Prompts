@@ -1,4 +1,9 @@
+import { EXAMS } from "@/lib/examConfig";
 import { BreakPageClient } from "./BreakPageClient";
+
+export function generateStaticParams() {
+  return Object.keys(EXAMS).map((examId) => ({ examId }));
+}
 
 export default async function BreakPage({
   params,

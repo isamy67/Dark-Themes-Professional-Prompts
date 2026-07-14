@@ -1,9 +1,16 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Card } from "@/components/ui/Card";
-import { SECTION_DISPLAY_NAMES } from "@/content/lessons";
+import { ALL_FOUNDATIONAL_CONCEPTS, SECTION_DISPLAY_NAMES } from "@/content/lessons";
 import { getFoundationalConceptsForSection } from "@/lib/content";
 import { sectionKeySchema } from "@/lib/types";
+
+export function generateStaticParams() {
+  const sectionSlugs = new Set(
+    ALL_FOUNDATIONAL_CONCEPTS.map((fc) => fc.sectionKey),
+  );
+  return [...sectionSlugs].map((sectionSlug) => ({ sectionSlug }));
+}
 
 export default async function LearnSectionPage({
   params,

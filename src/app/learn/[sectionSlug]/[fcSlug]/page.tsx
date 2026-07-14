@@ -1,8 +1,16 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Card } from "@/components/ui/Card";
+import { ALL_FOUNDATIONAL_CONCEPTS } from "@/content/lessons";
 import { getFoundationalConcept, getLessonTopicsForConcept } from "@/lib/content";
 import { sectionKeySchema } from "@/lib/types";
+
+export function generateStaticParams() {
+  return ALL_FOUNDATIONAL_CONCEPTS.map((fc) => ({
+    sectionSlug: fc.sectionKey,
+    fcSlug: fc.id,
+  }));
+}
 
 export default async function LearnConceptPage({
   params,

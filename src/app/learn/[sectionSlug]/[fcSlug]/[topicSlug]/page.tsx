@@ -8,6 +8,15 @@ import {
   getLessonTopicsForConcept,
 } from "@/lib/content";
 import { sectionKeySchema } from "@/lib/types";
+import { ALL_LESSON_TOPICS } from "@/content/lessons";
+
+export function generateStaticParams() {
+  return ALL_LESSON_TOPICS.map((topic) => ({
+    sectionSlug: topic.sectionKey,
+    fcSlug: topic.foundationalConceptId,
+    topicSlug: topic.slug,
+  }));
+}
 
 export default async function LearnTopicPage({
   params,
