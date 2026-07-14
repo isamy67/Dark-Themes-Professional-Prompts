@@ -34,12 +34,11 @@ jobs:
 
       - name: Configure Pages
         id: pages
+        # Requires Pages to be enabled once in the repo:
+        # Settings -> Pages -> Source = "GitHub Actions". The workflow token
+        # on this (forked) repo isn't permitted to enable Pages via the API,
+        # so that one toggle must be done manually before the first deploy.
         uses: actions/configure-pages@v5
-        with:
-          # Auto-provision the Pages site (build type = GitHub Actions) using
-          # the workflow token, so the repo owner doesn't have to toggle
-          # Settings -> Pages -> Source manually before the first deploy.
-          enablement: true
 
       - name: Build static export
         env:
