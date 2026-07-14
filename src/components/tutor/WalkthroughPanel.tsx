@@ -16,10 +16,16 @@ export function WalkthroughPanel({
   explanationOverall,
 }: WalkthroughPanelProps) {
   const revealed = Boolean(explanationOverall);
-  const [stepsShown, setStepsShown] = useState(revealed ? walkthrough.steps.length : 1);
+  const [stepsShown, setStepsShown] = useState(1);
 
-  const visibleSteps = walkthrough.steps.slice(0, stepsShown);
-  const hasMore = stepsShown < walkthrough.steps.length;
+  // Once revealed, always show every step regardless of how far the user
+  // had progressively clicked through — "revealed" can become true after
+  // this panel already mounted (via "Walk me through it" pre-answer), so
+  // the initial useState value alone can't be trusted for that case.
+  const visibleSteps = revealed
+    ? walkthrough.steps
+    : walkthrough.steps.slice(0, stepsShown);
+  const hasMore = !revealed && stepsShown < walkthrough.steps.length;
 
   return (
     <Card className="flex flex-col gap-4 p-5">

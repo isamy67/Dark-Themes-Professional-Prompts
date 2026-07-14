@@ -6,6 +6,12 @@ import { Card } from "@/components/ui/Card";
 import { getExamSection, getQuestionsForSection } from "@/lib/content";
 import { useTutorProgressStore } from "@/store/tutorProgressStore";
 
+// Module-level so the fallback is referentially stable across renders —
+// `?? {}` inline would allocate a new object every call, and since Zustand's
+// useSyncExternalStore compares by reference, that reads as "changed" on
+// every render and causes an infinite update loop.
+const EMPTY_PROGRESS = {};
+
 export function TutorSectionListClient({
   examId,
   sectionSlug,
@@ -16,7 +22,7 @@ export function TutorSectionListClient({
   const sectionConfig = getExamSection(examId, sectionSlug);
   const questions = getQuestionsForSection(sectionConfig.contentModuleId);
   const progress = useTutorProgressStore(
-    (s) => s.progress[sectionConfig.contentModuleId] ?? {},
+    (s) => s.progress[sectionConfig.contentModuleId] ?? EMPTY_PROGRESS,
   );
 
   return (
