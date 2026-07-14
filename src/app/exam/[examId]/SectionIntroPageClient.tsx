@@ -45,14 +45,16 @@ export function SectionIntroPageClient({ examId }: { examId: string }) {
           </div>
           <div className="rounded-lg border border-border p-4">
             <p className="font-mono text-[10px] uppercase tracking-wide text-muted-foreground">
-              Time Limit
+              {sectionAttempt.timed ? "Time Limit" : "Timing"}
             </p>
             <p className="mt-1 font-display text-xl font-semibold tabular-nums text-foreground">
-              {formatDuration(sectionConfig.durationSec * 1000)}
+              {sectionAttempt.timed
+                ? formatDuration(sectionConfig.durationSec * 1000)
+                : "Untimed"}
             </p>
           </div>
         </div>
-        {isScaled && (
+        {isScaled && sectionAttempt.timed && (
           <p className="text-xs text-muted-foreground">
             Real MCAT: {sectionConfig.fullQuestionCount} questions in{" "}
             {formatDuration(sectionConfig.fullDurationSec * 1000)}. This
@@ -61,7 +63,9 @@ export function SectionIntroPageClient({ examId }: { examId: string }) {
           </p>
         )}
         <p className="text-sm text-muted-foreground">
-          Once you begin, the timer starts immediately and cannot be paused.
+          {sectionAttempt.timed
+            ? "Once you begin, the timer starts immediately and cannot be paused. "
+            : "This is untimed practice — an elapsed-time clock will count up, but nothing will auto-submit. "}
           You will not be able to return to this section after submitting it.
         </p>
         <Button onClick={() => beginSection(attempt.currentSectionIndex)}>
