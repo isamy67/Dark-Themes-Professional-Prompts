@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { GraduationCap } from "lucide-react";
+import { BookOpen, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { exam1Meta } from "@/lib/examConfig";
@@ -145,6 +145,21 @@ export function HomePageClient() {
           ))}
         </div>
       </div>
+
+      <Link href="/learn" className="w-full">
+        <Card interactive className="flex items-center gap-3 p-6">
+          <BookOpen size={18} strokeWidth={1.5} className="text-accent" />
+          <div>
+            <p className="font-display text-sm font-semibold text-foreground">
+              Review Lessons
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Written subject-review lessons with clinical correlations,
+              organized by AAMC content category.
+            </p>
+          </div>
+        </Card>
+      </Link>
     </main>
   );
 }

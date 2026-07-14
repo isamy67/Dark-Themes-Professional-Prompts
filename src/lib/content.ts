@@ -1,11 +1,18 @@
+import type { ComponentType } from "react";
 import { sectionContentSchema, type Passage, type Question, type SectionContent } from "@/lib/types";
 import { EXAMS, getExamMeta } from "@/lib/examConfig";
-import type { ExamMeta, ExamSectionConfig } from "@/lib/types";
+import type { ExamMeta, ExamSectionConfig, FoundationalConcept, LessonTopic, SectionKey } from "@/lib/types";
 
 import chemPhysContent from "@/content/exams/exam-1/sections/chem-phys";
 import carsContent from "@/content/exams/exam-1/sections/cars";
 import bioBiochemContent from "@/content/exams/exam-1/sections/bio-biochem";
 import psychSocContent from "@/content/exams/exam-1/sections/psych-soc";
+
+import {
+  ALL_FOUNDATIONAL_CONCEPTS,
+  ALL_LESSON_TOPICS,
+  ALL_MDX_REGISTRY,
+} from "@/content/lessons";
 
 /**
  * Raw (unvalidated) content modules, keyed by ExamSectionConfig.contentModuleId.
@@ -129,4 +136,51 @@ export function getSectionItems(contentModuleId: string): SectionItem[] {
     items.push({ passage: null, questions: discretes });
   }
   return items;
+}
+
+// ---------------------------------------------------------------------------
+// Learn section: Foundational Concepts / CARS skill areas + lesson topics
+// ---------------------------------------------------------------------------
+
+export function getFoundationalConceptsForSection(
+  sectionKey: SectionKey,
+): FoundationalConcept[] {
+  return ALL_FOUNDATIONAL_CONCEPTS.filter((fc) => fc.sectionKey === sectionKey).sort(
+    (a, b) => a.number - b.number,
+  );
+}
+
+export function getFoundationalConcept(
+  fcId: string,
+): FoundationalConcept | undefined {
+  return ALL_FOUNDATIONAL_CONCEPTS.find((fc) => fc.id === fcId);
+}
+
+export function getLessonTopicsForConcept(fcId: string): LessonTopic[] {
+  const fc = getFoundationalConcept(fcId);
+  if (!fc) return [];
+  return fc.topicIds
+    .map((id) => ALL_LESSON_TOPICS.find((t) => t.id === id))
+    .filter((t): t is LessonTopic => t !== undefined);
+}
+
+export function getLessonTopic(topicId: string): LessonTopic | undefined {
+  return ALL_LESSON_TOPICS.find((t) => t.id === topicId);
+}
+
+export function getLessonTopicBySlug(
+  sectionKey: SectionKey,
+  fcId: string,
+  topicSlug: string,
+): LessonTopic | undefined {
+  return ALL_LESSON_TOPICS.find(
+    (t) =>
+      t.sectionKey === sectionKey &&
+      t.foundationalConceptId === fcId &&
+      t.slug === topicSlug,
+  );
+}
+
+export function getLessonMdxComponent(topicId: string): ComponentType | undefined {
+  return ALL_MDX_REGISTRY[topicId];
 }
