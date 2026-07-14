@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { exam1Meta } from "@/lib/examConfig";
@@ -114,6 +116,33 @@ export function HomePageClient() {
               </Card>
             );
           })}
+        </div>
+      </div>
+
+      <div className="w-full">
+        <h2 className="mb-1 font-display text-lg font-semibold tracking-tight text-foreground">
+          Tutor Mode
+        </h2>
+        <p className="mb-4 text-sm text-muted-foreground">
+          Untimed, guided walkthroughs of the same questions — get the
+          approach before or after you answer.
+        </p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {exam1Meta.sections.map((section) => (
+            <Link key={section.id} href={`/tutor/exam-1/${section.id}`}>
+              <Card interactive className="flex items-center gap-3 p-6">
+                <GraduationCap size={18} strokeWidth={1.5} className="text-accent" />
+                <div>
+                  <p className="font-mono text-xs tracking-wide text-muted-foreground">
+                    {section.key.toUpperCase()}
+                  </p>
+                  <p className="mt-1 font-display text-sm font-semibold text-foreground">
+                    {section.title}
+                  </p>
+                </div>
+              </Card>
+            </Link>
+          ))}
         </div>
       </div>
     </main>
