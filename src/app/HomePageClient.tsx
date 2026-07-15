@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { BookOpen, CheckCircle2, GraduationCap, Layers, PlayCircle, XCircle } from "lucide-react";
+import { BarChart3, BookOpen, CheckCircle2, GraduationCap, Layers, PlayCircle, XCircle } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -245,6 +245,21 @@ export function HomePageClient() {
             <p className="text-xs text-muted-foreground">
               Written subject-review lessons with clinical correlations,
               organized by AAMC content category.
+            </p>
+          </div>
+        </Card>
+      </Link>
+
+      <Link href="/dashboard" className="w-full">
+        <Card interactive className="flex items-center gap-3 p-6">
+          <BarChart3 size={18} strokeWidth={1.5} className="text-accent" />
+          <div>
+            <p className="font-display text-sm font-semibold text-foreground">
+              Your Progress
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Score trends, accuracy by section and foundational concept, weak
+              areas, and flashcard stats — all in one dashboard.
             </p>
           </div>
         </Card>
