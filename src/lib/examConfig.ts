@@ -82,11 +82,15 @@ function buildSectionConfig(
 
 const EXAM_1_USES_FULL_AAMC_DURATIONS = false;
 
+// Per-section question counts. CARS and Psych/Soc are at their full AAMC
+// length; Chem/Phys and Bio/Biochem are being expanded to the full 59 and
+// stay at the starter count until that content lands. Timers scale to real
+// AAMC pace off these counts.
 const EXAM_1_QUESTION_COUNTS: Record<SectionKey, number> = {
   "chem-phys": 12,
-  cars: 10,
+  cars: 53,
   "bio-biochem": 12,
-  "psych-soc": 12,
+  "psych-soc": 59,
 };
 
 const exam1Sections: ExamSectionConfig[] = REAL_AAMC_SECTION_ORDER.map(
