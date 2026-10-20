@@ -1,11 +1,15 @@
 import type { SectionContent } from "@/lib/types";
+import * as partA from "./parts/bio-biochem-a";
+import * as partB from "./parts/bio-biochem-b";
+import * as partC from "./parts/bio-biochem-c";
+import * as partD from "./parts/bio-biochem-d";
 
 /**
  * Bio/Biochem section content for exam-1: 3 passages (competitive enzyme
  * inhibition, bacterial gene regulation, renal/endocrine physiology) plus
  * 3 standalone discrete questions, spanning FC1-FC3.
  */
-const bioBiochemContent: SectionContent = {
+const starterContent: SectionContent = {
   sectionId: "bio-biochem",
   passages: [
     {
@@ -394,6 +398,18 @@ Patient Z (healthy control): urine osmolality was 850 mOsm/kg both before and af
       difficulty: "hard",
     },
   ],
+};
+
+/**
+ * Full-length Bio/Biochem section (59 questions, the real AAMC count): the
+ * starter set above plus four expansion parts in ./parts, each owning a
+ * fixed id/order range so they compose without collisions.
+ */
+const parts = [partA, partB, partC, partD];
+const bioBiochemContent: SectionContent = {
+  ...starterContent,
+  passages: [...starterContent.passages, ...parts.flatMap((p) => p.passages)],
+  questions: [...starterContent.questions, ...parts.flatMap((p) => p.questions)],
 };
 
 export default bioBiochemContent;

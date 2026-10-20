@@ -76,20 +76,17 @@ function buildSectionConfig(
 }
 
 // ---------------------------------------------------------------------------
-// exam-1: the starter exam. ~10-15 questions per section, real AAMC order,
-// structure, and break screens; per-section timers scaled to real pace.
+// exam-1: a full-length exam at real AAMC question counts, section order,
+// break screens, and section timers.
 // ---------------------------------------------------------------------------
 
-const EXAM_1_USES_FULL_AAMC_DURATIONS = false;
+const EXAM_1_USES_FULL_AAMC_DURATIONS = true;
 
-// Per-section question counts. CARS and Psych/Soc are at their full AAMC
-// length; Chem/Phys and Bio/Biochem are being expanded to the full 59 and
-// stay at the starter count until that content lands. Timers scale to real
-// AAMC pace off these counts.
+// Per-section question counts — the full AAMC length for every section.
 const EXAM_1_QUESTION_COUNTS: Record<SectionKey, number> = {
-  "chem-phys": 12,
+  "chem-phys": 59,
   cars: 53,
-  "bio-biochem": 12,
+  "bio-biochem": 59,
   "psych-soc": 59,
 };
 
@@ -108,7 +105,7 @@ export const exam1Meta: ExamMeta = examMetaSchema.parse({
   id: "exam-1",
   title: "Full-Length Practice Exam 1",
   description:
-    "A full 1:1 replica of the real MCAT day: same section order, break screens, and navigation rules. Per-section timers are scaled to the real AAMC pace for this exam's shorter starter question set.",
+    "A full 1:1 replica of the real MCAT day: all 230 questions, the real section order and timing (95 / 90 / 95 / 95 minutes), break screens, and navigation rules.",
   usesFullAAMCDurations: EXAM_1_USES_FULL_AAMC_DURATIONS,
   tutorial: {
     enabled: true,

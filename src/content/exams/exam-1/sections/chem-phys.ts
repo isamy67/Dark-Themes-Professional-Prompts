@@ -1,11 +1,15 @@
 import type { SectionContent } from "@/lib/types";
+import * as partA from "./parts/chem-phys-a";
+import * as partB from "./parts/chem-phys-b";
+import * as partC from "./parts/chem-phys-c";
+import * as partD from "./parts/chem-phys-d";
 
 /**
  * Full ~12-question chem-phys starter-exam set: buffer chemistry (cp-p1),
  * respiratory gas laws/fluids (cp-p2), electrochemistry (cp-p3), and three
  * standalone discretes spanning thermodynamics, periodic trends, and circuits.
  */
-const chemPhysContent: SectionContent = {
+const starterContent: SectionContent = {
   sectionId: "chem-phys",
   passages: [
     {
@@ -406,6 +410,18 @@ where $Q = [Zn^{2+}]/[Cu^{2+}]$ for this two-electron transfer reaction. The res
       difficulty: "easy",
     },
   ],
+};
+
+/**
+ * Full-length Chem/Phys section (59 questions, the real AAMC count): the
+ * starter set above plus four expansion parts in ./parts, each owning a
+ * fixed id/order range so they compose without collisions.
+ */
+const parts = [partA, partB, partC, partD];
+const chemPhysContent: SectionContent = {
+  ...starterContent,
+  passages: [...starterContent.passages, ...parts.flatMap((p) => p.passages)],
+  questions: [...starterContent.questions, ...parts.flatMap((p) => p.questions)],
 };
 
 export default chemPhysContent;
